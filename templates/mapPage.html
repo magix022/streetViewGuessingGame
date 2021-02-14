@@ -20,10 +20,12 @@
 		max-width: 80%;
 		z-index: 10;
 		//transition: 200ms ease-in-out;
+		pointer-events: none;
 	}
 
 	.popup.active{
 		transform: translate(-50%, -50%) scale(1);
+		pointer-events: all;
 	}
 
 	.popup-header{
@@ -103,7 +105,8 @@
 </style>
 
 <script>
-
+	let marker;
+	let coordinates
 	function openPopup(popup) {
 		if (popup == null) alert("null")
 		popup.classList.add('active')
@@ -117,13 +120,35 @@
 	}
 
 	function initMap(){
-		map = new google.maps.Map(document.getElementById("map"),{
-			center: {lat: -34.397, lng: 150.644},
-			zoom: 5,
+		
+		
+		const map = new google.maps.Map(document.getElementById("map"),{
+			center: {lat: 56.1304, lng: -106.3468},
+			zoom: 3,
 		});
+		map.addListener("click", (mapsMouseEvent) => {
+			if (marker != null){
+				marker.setMap(null);
+			}
+			coordinates = mapsMouseEvent.latLng;
+			marker = new google.maps.Marker({
+				position: mapsMouseEvent.latLng, map, title:"Guess"
+			});
+		});
+			
 	}
 
-	let map;
+	function confirmGuess(){
+		if(coordinates == null){
+			alert("Please make a guess")
+			return;
+		}
+		alert("confirmed")
+		localStorage.setItem("coordinates", JSON.stringify(coordinates));
+
+	}
+
+	
 
 
 	/*const openPopupButtons = document.querySelectorAll('[data-popup-target]')
@@ -167,7 +192,7 @@
 
 <body>
 
-	<h1>Can you guess where that is?</h1>-->
+	<h1>Can you guess where that is?</h1>
 	<div>
 		<iframe src="../static/gsv_0.jpg" width=640 height=500 frameborder="0" style="border:0;" allowfullscreen="true"
 				aria-hidden="true" tabindex="0"></iframe>
@@ -176,27 +201,29 @@
 <!--  		<a href="/result" style="text-decoration: none;" class="guess">Guess!</a>-->
 <!--	</div>-->
 	<div class="button-d">
-		<button data-popup-target="#popup" class="button" id="openButton" onClick="openPopup(popup)">
+		<button data-popup-target="#popup" class="button" id="openButton" onclick="openPopup(popup)">
 			Take a Guess!
 		</button>
 	</div>
 	<div class="popup" id="popup">
 		<div class="popup-header">
 			<div class="title">Pick a location</div>
-			<button data-close-button class="close-button" onClick="closePopup(popup)">&times;</button>
+			<button data-close-button class="close-button" onclick="closePopup(popup)">&times;</button>
 		</div>
 		<div class="map" id="map"></div>
 
 		<script
-      		src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=initMap&libraries=&v=weekly"></script>
+      		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkSUwfbVyp5B7GBB-fUtYST8w6t2CBsT8&callback=initMap&libraries=&v=weekly"></script>
 
 
-		<div class="popup-button">
-
+		<div id="popup-button">
+			<a href="calcScore.html" class="button" id="popup-button" style="border: none" onclick="confirmGuess()">
+				Confirm
+			</a>
 		</div>
 
 	</div>
-	<div id="overlay" onCLick="closePopup(popup)"></div>
+	<div id="overlay"></div>
 
 
 </body>
