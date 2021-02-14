@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+<title>StreetView Guessing Game</title>
+</head>
+<style>
+	body{
+		text-align: center;
+		color: white;
+		background-color: black;
+		font-family: 'Roboto Mono', monospace;
+	}
+
+	.button-d{
+		padding: 30px 50px;
+	}
+
+	.button{
+		border: 2px solid  #93ff33;
+		color: white;
+		background-color: black;
+		padding: 15px 32px;
+		display: inline-block;
+		margin: 4px 2px;
+		text-decoration: none;
+		font-size: 24px;
+		font-family:'Roboto Mono', monospace;
+		cursor: pointer;
+		transition-duration: 0.4s;
+	}
+
+	.button:hover{
+		background-color:  #93ff33;
+		color: black;
+	}
+</style>
+
+<body>
+    <div id="map"></div>
+	<h1>Your guess is x kilometers away from the correct location</h1>
+	<h2>Your score is Y</h2>
+	<img src="https://geology.com/world/canada-map.gif" alt="Insert image of map" >
+	<div class="button-d">
+		<a href="/mapPage" style="text-decoration: none;" class="button" onclick="refresh()">Play again!</a>
+	</div>
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.1/handlebars.js"></script>
+<script>
+		function refresh() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("GET", "{{ url_for('refresh') }}", true);
+			xhttp.send();
+			document.getElementById("map").src="static/gsv_0.jpg";
+		};
+</script>

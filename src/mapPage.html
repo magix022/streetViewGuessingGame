@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Time to guess</title>
-	
+
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
 
@@ -130,7 +130,7 @@
 	const closePopupButtons = document.querySelectorAll('[data-close-button]')
 	const overlay = document.getElementById('overlay')*/
 
-	
+
 	/*document.getElementById("openButton").addEventListener("click", function() {
 		alert("Button clicked")
 		const popup = document.getElementById("popup")
@@ -166,10 +166,15 @@
 </head>
 
 <body>
-	<h1>Can you guess where that is?</h1>
+
+	<h1>Can you guess where that is?</h1>-->
 	<div>
-		
+		<iframe src="../static/gsv_0.jpg" width=640 height=500 frameborder="0" style="border:0;" allowfullscreen="true"
+				aria-hidden="true" tabindex="0"></iframe>
 	</div>
+<!--	<div class="button-d">-->
+<!--  		<a href="/result" style="text-decoration: none;" class="guess">Guess!</a>-->
+<!--	</div>-->
 	<div class="button-d">
 		<button data-popup-target="#popup" class="button" id="openButton" onClick="openPopup(popup)">
 			Take a Guess!
@@ -183,16 +188,17 @@
 		<div class="map" id="map"></div>
 
 		<script
-      		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkSUwfbVyp5B7GBB-fUtYST8w6t2CBsT8&callback=initMap&libraries=&v=weekly"></script>
+      		src="https://maps.googleapis.com/maps/api/js?key=KEY&callback=initMap&libraries=&v=weekly"></script>
 
-		
+
 		<div class="popup-button">
-			
+
 		</div>
-		
+
 	</div>
 	<div id="overlay" onCLick="closePopup(popup)"></div>
-	
+
 
 </body>
 </html>
+
