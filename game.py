@@ -1,7 +1,7 @@
 import os
 
-from flask import Flask, render_template, redirect, url_for
-from src import streetview
+from flask import Flask, render_template, redirect, url_for, request
+from src import streetview, mapinfo
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
@@ -16,12 +16,15 @@ def index():
 # Map Page
 @app.route('/mapPage')
 def show_map():
-    return render_template('mapPage.html')
+    place = mapinfo.FindPlace()
+    location = place.get_location()
+    return render_template('mapPage.html', location=location)
 
 
-@app.route('/result')
+@app.route('/scorePage',  methods=['GET'])
 def show_score():
-    return render_template('calcScore.html')
+    score = request.args.get('score')
+    return render_template('scorePage.html', score=score)
 
 
 @app.route('/refresh')
@@ -31,6 +34,14 @@ def refresh():
     """
     streetview.StreetView()
     return redirect(url_for('show_map'))
+
+# @app.route('/getscore')
+# def get_score():
+#     """
+#     refreshes the question
+#     """
+#     streetview.StreetView()
+#     return redirect(url_for('show_map'))
 
 
 if __name__ == '__main__':

@@ -33,7 +33,7 @@ types = ['atm',
 
 class FindPlace():
     def __init__(self):
-        self.client = googlemaps.Client(key='API_KEY')
+        self.client = googlemaps.Client(key='AIzaSyA8ph88gC-ixDdco7TmKkVKPEk2mXyvAwg')
         index = randint(0, len(types) - 1)
         places_result = self.client.places(query=types[index], region='ca', location=[uniform(41.66, 83.11), uniform(-141.00, -52.61)])
         self.res = places_result['results']

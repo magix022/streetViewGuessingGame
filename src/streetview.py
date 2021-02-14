@@ -1,5 +1,5 @@
 import google_streetview.api
-import mapinfo
+from src import mapinfo
 
 
 class StreetView():
@@ -9,7 +9,7 @@ class StreetView():
         params = [{
             'size': '640x500',  # max 640x640 pixels
             'location': f"{self.location['lat']}, {self.location['lng']}",
-            'key': 'API_KEY'
+            'key': 'AIzaSyA8ph88gC-ixDdco7TmKkVKPEk2mXyvAwg'
         }]
 
         results = google_streetview.api.results(params)
