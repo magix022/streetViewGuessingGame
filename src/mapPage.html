@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Time to guess</title>
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+
+
+<style>
+
+	.popup{
+		color: green;
+		background-color: white;
+		position: fixed;
+		width: 1000px;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%) scale(0);
+		max-width: 80%;
+		z-index: 10;
+		//transition: 200ms ease-in-out;
+	}
+
+	.popup.active{
+		transform: translate(-50%, -50%) scale(1);
+	}
+
+	.popup-header{
+		padding: 10px 15px;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.popup-header .close-button{
+		cursor: pointer;
+		border: none;
+		outline: none;
+		background: none;
+		font-size: 1.25rem;
+		font-weight: bold;
+	}
+
+	#overlay{
+		position: fixed;
+		opacity: 0;
+		transition: 200ms ease-in-out;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, .5);
+		pointer-events: none;
+	}
+
+	#overlay.active{
+		opacity: 1;
+		pointer-events: all;
+	}
+
+
+	body{
+		text-align: center;
+		align-content: center;
+		background-color: black;
+		color: white;
+		font-family: 'Roboto Mono', monospace;
+	}
+
+	.button-d{
+		padding: 50px 50px;
+	}
+
+	.button{
+		border: 2px solid  #93ff33;
+		color: white;
+		background-color: black;
+		padding: 15px 32px;
+		display: inline-block;
+		margin: 4px 2px;
+		text-decoration: none;
+		font-size: 24px;
+		font-family:'Roboto Mono', monospace;
+		cursor: pointer;
+		transition-duration: 0.4s;
+	}
+
+	.button:hover{
+		background-color:  #93ff33;
+		color: black;
+	}
+
+	#map{
+		width: 100%;
+		height: 700px;
+
+	}
+
+
+
+
+
+</style>
+
+<script>
+
+	function openPopup(popup) {
+		if (popup == null) alert("null")
+		popup.classList.add('active')
+		overlay.classList.add('active')
+	}
+
+	function closePopup(popup){
+		if (popup == null) return
+		popup.classList.remove('active')
+		overlay.classList.remove('active')
+	}
+
+	function initMap(){
+		map = new google.maps.Map(document.getElementById("map"),{
+			center: {lat: -34.397, lng: 150.644},
+			zoom: 5,
+		});
+	}
+
+	let map;
+
+
+	/*const openPopupButtons = document.querySelectorAll('[data-popup-target]')
+	const closePopupButtons = document.querySelectorAll('[data-close-button]')
+	const overlay = document.getElementById('overlay')*/
+
+	
+	/*document.getElementById("openButton").addEventListener("click", function() {
+		alert("Button clicked")
+		const popup = document.getElementById("popup")
+		openPopup(popup)
+	})*/
+
+	//openPopupButtons.forEach(button => {
+	//	button.addEventListener('click', () => {
+	//		alert("button is cli")
+	//		const popup = document.querySelector(button.dataset.popupTarget)
+	//		openPopup(popup)
+	//	})
+	//})
+
+
+	//overlay.addEventListener('click', () => {
+	//	const popups = document.querySelectorAll('.popup.active')
+	//	popups.forEach(popup => {
+	//		closePopup(popup)
+	//	})
+	//})
+
+
+	/*closePopupButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			const popup = button.closest('.popup')
+			closePopup(popup)
+		})
+	})*/
+
+
+</script>
+</head>
+
+<body>
+	<h1>Can you guess where that is?</h1>
+	<div>
+		
+	</div>
+	<div class="button-d">
+		<button data-popup-target="#popup" class="button" id="openButton" onClick="openPopup(popup)">
+			Take a Guess!
+		</button>
+	</div>
+	<div class="popup" id="popup">
+		<div class="popup-header">
+			<div class="title">Pick a location</div>
+			<button data-close-button class="close-button" onClick="closePopup(popup)">&times;</button>
+		</div>
+		<div class="map" id="map"></div>
+
+		<script
+      		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkSUwfbVyp5B7GBB-fUtYST8w6t2CBsT8&callback=initMap&libraries=&v=weekly"></script>
+
+		
+		<div class="popup-button">
+			
+		</div>
+		
+	</div>
+	<div id="overlay" onCLick="closePopup(popup)"></div>
+	
+
+</body>
+</html>
