@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+	body{
+		text-align: center;
+		background-color: black;
+		color: white;
+		font-family: 'Roboto Mono', monospace;
+	}
+
+	.button-d{
+		padding: 50px 50px;
+	}
+
+	.button{
+		border: 2px solid  #93ff33;
+		color: white;
+		background-color: black;
+		padding: 15px 32px;
+		display: inline-block;
+		margin: 4px 2px;
+		text-decoration: none;
+		font-size: 24px;
+		font-family:'Roboto Mono', monospace;
+		cursor: pointer;
+		transition-duration: 0.4s;
+	}
+
+	.button:hover{
+		background-color:  #93ff33;
+		color: black;
+	}
+
+
+</style>
+
+
+<body>
+	<h1>Can you guess where that is?</h1>
+	<div>
+		<iframe src="https://www.google.com/maps/embed?pb=!4v1613271614565!6m8!1m7!1sCAoSLEFGMVFpcFBWbXMwT1NEVjNKeGQ0eWRTUzNaZjlxY0JReDBIcmtXOTVwUlQ3!2m2!1d45.50468715445443!2d-73.55717176032687!3f160.16383426883877!4f5.927765734639934!5f0.7820865974627469" width=1300 height=600 frameborder="0" style="border:0;" allowfullscreen="true" aria-hidden="true" tabindex="0"></iframe>
+	</div>
+	<div class="button-d">
+		<button class="button">
+			Take a Guess!
+		</button>
+	</div>
+
+</body>
+</html>
